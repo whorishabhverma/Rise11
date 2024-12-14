@@ -47,14 +47,14 @@ The **Construction Dashboard** is a dynamic, interactive platform built to track
 ## Dashboard Views
 
 ### Desktop View
-![Desktop View](./public/laptop_1.png)
+![Desktop View](./Dashboard/public/laptop_1.png)
 
 ### Tablet View
-![Tablet View](./public/tab_1.png)
+![Tablet View](./Dashboard/public/tab_1.png)
 
 ### Mobile View
-<img src="./public/mobile_1.png" alt="Mobile View" width="300" />
-<img src="./public/mobile_2.png" alt="Mobile View" width="300" />
+<img src="./Dashboard/public/mobile_1.png" alt="Mobile View" width="300" />
+<img src="./Dashboard/public/mobile_2.png" alt="Mobile View" width="300" />
 
 ## Installation
 
