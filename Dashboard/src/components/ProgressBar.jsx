@@ -2,38 +2,71 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 
 const ProgressBar = ({ steps, currentStep }) => {
+  const BLUE_COLOR = "#1a73e8";
+  const GRAY_COLOR = "#e0e0e0";
+
   return (
     <Box
       display="flex"
       alignItems="center"
       justifyContent="space-between"
-      sx={{ width: "100%", backgroundColor: "#f5f7fb", padding: "-100px", borderRadius: "0px" }}
+      position="relative"
+      sx={{ 
+        width: "100%", 
+        padding: "20px 0", 
+      }}
     >
       {steps.map((step, index) => {
         const isCompleted = index < currentStep;
         const isActive = index === currentStep;
 
         return (
-          <Box key={index} display="flex" alignItems="center" flex={1}>
-            {/* Step Number */}
+          <Box 
+            key={index} 
+            display="flex" 
+            flexDirection="column" 
+            alignItems="center" 
+            flex={1}
+            position="relative"
+          >
+            {/* Connecting Line (Behind the Circles) */}
+            {index < steps.length - 1 && (
+              <Box
+                position="absolute"
+                top="15px"
+                left="50%"
+                right="50%"
+                height={2}
+                sx={{
+                  backgroundColor: isCompleted ? BLUE_COLOR : GRAY_COLOR,
+                  width: "calc(100%)",
+                  zIndex: 0
+                }}
+              ></Box>
+            )}
+
+            {/* Step Number/Checkmark */}
             <Box
               sx={{
-                width: 20,
-                height: 20,
+                width: 30,
+                height: 30,
                 borderRadius: "50%",
-                backgroundColor: isCompleted ? "#1a73e8" : "#f0f0f0",
+                backgroundColor: isCompleted ? BLUE_COLOR : "#f0f0f0",
                 color: isCompleted ? "#fff" : "#000",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 fontWeight: isCompleted || isActive ? "bold" : "normal",
+                marginBottom: 1,
+                zIndex: 1,
+                position: "relative"
               }}
             >
               {isCompleted ? "✔" : index + 1}
             </Box>
 
-            {/* Step Label */}
-            <Box ml={1} textAlign="center">
+            {/* Step Label Container */}
+            <Box textAlign="center">
               <Typography
                 variant="body2"
                 fontWeight={isActive ? "bold" : "normal"}
@@ -42,24 +75,15 @@ const ProgressBar = ({ steps, currentStep }) => {
                 {step.label}
               </Typography>
               {step.time && (
-                <Typography variant="caption" color="gray">
+                <Typography 
+                  variant="caption" 
+                  color="gray"
+                  display="block"
+                >
                   {step.time}
                 </Typography>
               )}
             </Box>
-
-            {/* Line */}
-            {index < steps.length - 1 && (
-              <Box
-                flex={1}
-                height={1}
-                mx={1}
-                sx={{
-                  backgroundColor: isCompleted ? "#1a73e8" : "#e0e0e0",
-                  borderStyle: isActive ? "dotted" : "solid",
-                }}
-              ></Box>
-            )}
           </Box>
         );
       })}
@@ -72,10 +96,10 @@ export default function App() {
     { label: "Preliminary" },
     { label: "Your Details" },
     { label: "KYC" },
-    { label: "Parties", time: "Approx 5 Min" },
-    { label: "Claim", time: "Approx 5 Min" },
-    { label: "Review", time: "Approx 5 Min" },
-    { label: "Payment", time: "Approx 5 Min" },
+    { label: "Parties" },
+    { label: "Claim"   },
+    { label: "Review"  },
+    { label: "Payment"}
   ];
 
   return (
